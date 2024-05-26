@@ -1,4 +1,4 @@
-class FeedbacksController < ApplicationController
+class FeedbackController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.save

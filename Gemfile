@@ -10,6 +10,9 @@ gem 'bootstrap'
 
 gem 'rack'
 
+gem 'therubyracer', platforms: :ruby
+gem 'execjs'
+
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
