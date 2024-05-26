@@ -1,0 +1,94 @@
+<header class="header">
+	<div class="container header-container">
+		<nav class="navbar">
+			<a href="<%= root_path %>" class="logo">
+				<%= image_tag 'logo.svg', class: 'logo-img' %>
+			</a>
+			<ul class="menu">
+				<li class="menu__item">
+				  <a href="<%= pages_about_path %>" class="menu__link <%= 'active' if current_page?(pages_about_path) %>">О нас</a>
+				</li>
+
+				<li class="menu__item">
+				  <a href="<%= root_path %>" class="menu__link <%= 'active' if current_page?(root_path) %>">Аренда</a>
+				</li>
+
+				<li class="menu__item">
+				  <a href="<%= pages_delivery_path %>" class="menu__link <%= 'active' if current_page?(pages_delivery_path) %>">Правила</a>
+				</li>
+
+				<li class="menu__item">
+				  <a href="<%= pages_rules_path %>" class="menu__link <%= 'active' if current_page?(pages_rules_path) %>">Где кататься</a>
+				</li>
+
+				<li class="menu__item">
+				  <a href="<%= pages_contacts_path %>" class="menu__link <%= 'active' if current_page?(pages_contacts_path) %>">Контакты</a>
+				</li>
+			</ul>
+		</nav>
+
+		<ul class="action-menu">
+			<li class="action-menu__item">
+				<a href="tel: +79008009090" class="action-menu__link action-menu__phone">+79008009090</a>
+			</li>
+
+			<!-- <li class="action-menu__item">
+				<a class="action-menu__link">
+					<i class="fa-regular fa-user"></i>
+				</a>
+			</li> -->
+
+			<li class="action-menu__item">
+			  <% if user_signed_in? %>
+			    <%= link_to profile_path, class: "action-menu__link-user" do %>
+			      <i class="fa-solid fa-user-tie fa-user"></i>
+			      <a class="action-menu__link-new"></a>
+			      <!-- <i class="fa-regular fa-user fa-none"></i> -->
+			    <% end %>
+			  <% else %>
+			    <a class="action-menu__link-new">
+					<i class="fa-regular fa-user"></i>
+				</a>
+			  <% end %>
+			</li>
+
+			<li class="action-menu__item">
+				<span class="button action-menu__button">
+					Обратная связь
+				</span>
+			</li>
+
+			<li class="action-menu__item">
+				<div class="action-menu__time">
+					<span class="menu-time">12:00</span><br>
+					<span class="menu-time__place">Время в Волгодонске</span>
+				</div>
+			</li>
+
+			
+			<li class="action-menu__item_hide">
+				<a href="#" class="action-menu__item_bars">
+					<i class="fa-solid fa-bars"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
+
+<script>
+	function updateTime() {
+		let nowTime = new Date();
+		let hoursNow = nowTime.getHours();
+		let minutesNow = nowTime.getMinutes();
+
+		hoursNow = hoursNow < 10 ? '0' + hoursNow : hoursNow;
+		minutesNow = minutesNow < 10 ? '0' + minutesNow : minutesNow;
+
+		let timeString = hoursNow + ':' + minutesNow;
+
+		document.querySelector('.menu-time').innerHTML = timeString;
+	}
+
+	updateTime();
+	setInterval(updateTime, 1000);
+</script>

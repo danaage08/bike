@@ -1,0 +1,5 @@
+<%= form_with(model: @order, url: extend_order_path(@order), method: :patch) do |form| %>
+  <%= form.label :new_end_date, 'Новая дата окончания заказа:' %>
+  <%= form.date_field :new_end_date %>
+  <%= form.submit 'Продлить заказ' %>
+<% end %>

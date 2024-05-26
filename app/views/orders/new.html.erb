@@ -1,0 +1,172 @@
+
+<!-- app/views/orders/new.html.erb -->
+<section class="section section-new-order">
+	<h2 class="title section-new-order-title">Заявка на аренду велосипедов</h2>
+
+	<%= form_with(model: @order, url: orders_path, param: '') do |form| %>
+	  <% if @order.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@order.errors.count, "ошибка") %> заполнения формы:</h2>
+	      <ul>
+	      <% @order.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <!-- Вывод выбранных велосипедов -->
+	  <ul class="bike-list">
+		  	<% @summ = 0 %>
+		    <% @selected_bikes.each do |bike_id| %>
+		    	<li class="bike">
+			      <% bike = Bike.find(bike_id) %>
+			      <div class="park-section__block-img">
+							<%= image_tag("bike.png") %>
+						</div>
+						<div class="park-section__block-text">
+							<h3 class="park-section__block-text__title"><%= bike.title %></h3>
+							<div class="park-section__block-text-info">
+								<p class="park-section__block-text__price"><% @summ += bike.price %> <%= bike.price %> Рублей</p>
+							</div>
+						</div>
+					</li>
+		    <% end %>
+	  </ul>
+
+	  <div class="field-box">
+	  	<div class="field">
+			  <span class="field-span">Тип аренды</span>
+			  <br>
+			  <span class="field-span__ex">По дням</span>
+			</div>
+
+		  <div class="field">
+			  <span class="field-span">Дата начала аренды</span>
+			  <br>
+			  <%= form.date_field :start_date, id: "start-date", value: Date.today, required: true %>
+			</div>
+
+			<div class="field">
+			  <span class="field-span">Дата конца аренды</span>
+			  <br>
+			  <%= form.date_field :end_date, id: "end-date", required: true %>
+			</div>
+	  </div>
+
+	  <div class="field-box">
+			<div class="field">
+			  <span class="field-span">Доставка</span>
+			  <br>
+			  <span class="field-span__ex">По адресу</span>
+			</div>
+
+			<div class="field">
+		    <span class="field-span">Адрес доставки</span><br>
+		    <% if user_signed_in? %>
+				  <%= form.text_field :delivery_address, value: @delivery_address, class: 'field-span__ex', required: true %>
+				<% else %>
+				  <%= form.text_field :delivery_address, class: 'field-span__ex', required: true %>
+				<% end %>
+		  </div>
+
+		  <div class="field">
+		    <span class="field-span">Адрес возврата</span><br>
+		    <% if user_signed_in? %>
+				  <%= form.text_field :return_address, value: @delivery_address, class: 'field-span__ex', required: true %>
+				<% else %>
+				  <%= form.text_field :return_address, class: 'field-span__ex', required: true %>
+				<% end %>
+		  </div>
+	  </div>
+
+	<%#   <div class="field-label">
+	  	<div class="field field-radio">
+	  		<input type="radio" id="type_pay" name="drone" value="pay_place" checked />
+    		<label for="type_pay">Оплата на месте</label>
+	  	</div>
+	  </div> %>
+
+	  <!-- Общая сумма заказа -->
+	  <div id="days-difference">Общая сумма заказа: 0</div>
+
+	  <% @selecte_bikes = params[:bikes] %>
+
+		<%= form.hidden_field :bike_ids, value: @selecte_bikes %>
+
+	  <%= form.hidden_field :user_id, value: current_user.id %>
+	  <%= form.hidden_field :status, value: "Не оплачено" %>
+	  <%= form.hidden_field :admin_status, value: "in_processing" %>
+	  <%= form.hidden_field :total_price, id: "total-price" %>
+
+
+	  <div class="actions">
+	    <%= form.submit "Забронировать", class: 'button button-order' %>
+	  </div>
+	<% end %>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+  const startDateInput = document.getElementById("start-date");
+  const endDateInput = document.getElementById("end-date");
+
+  startDateInput.addEventListener("change", function() {
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 1);
+    endDateInput.valueAsDate = endDate;
+  });
+});
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const submitButton = form.querySelector('input[type="submit"]');
+
+    form.addEventListener('submit', function(event) {
+      // Проверяем валидность формы
+      if (!form.checkValidity()) {
+        // Если форма невалидна, предотвращаем отправку формы
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // Добавляем класс для отображения сообщений об ошибках
+      form.classList.add('was-validated');
+    });
+  });
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Функция для расчета количества дней между датами
+    function calculateDaysDifference() {
+  // Получаем значения дат начала и окончания
+  const startDate = new Date(document.getElementById('start-date').value);
+  const endDate = new Date(document.getElementById('end-date').value);
+
+  // Рассчитываем разницу в днях
+  const differenceInTime = endDate.getTime() - startDate.getTime();
+  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+
+  // Рассчитываем общую сумму
+  const totalPrice = differenceInDays * <%= @summ %>;
+
+  // Выводим результат
+  document.getElementById('days-difference').innerText = 'Общая сумма: ' + totalPrice;
+
+  // Записываем значение total_price в скрытое поле формы
+  document.getElementById('total-price').value = totalPrice;
+}
+
+
+    // Вызываем функцию при изменении значений дат
+    document.getElementById('start-date').addEventListener('change', calculateDaysDifference);
+    document.getElementById('end-date').addEventListener('change', calculateDaysDifference);
+  });
+
+</script>

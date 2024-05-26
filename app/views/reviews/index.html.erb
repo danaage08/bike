@@ -1,0 +1,16 @@
+<section class="section">
+  <h2 class="title reviews-title">Все отзывы <i class="fa-solid fa-envelope"></i></h2>
+
+  <div class="reviews-box-new">
+      <% @reviews.each do |review| %>
+      <div class="reviews-box-new__card">
+        <p class="reviews__text">
+          <%= review.review %>
+        </p>
+        <span class="reviews__author">
+          <i class="fa-solid fa-fire"></i> <%= review.user.name %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</section>

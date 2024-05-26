@@ -1,0 +1,119 @@
+<section class="section home-hero">
+	<div class="home-hero-box">
+		<h1 class="title home-hero__title">
+			Аренда велосипедов c доставкой
+		</h1>
+		<!-- <div class="home-hero__header-images-box">
+			<div class="home-hero__cards">
+				<%= image_tag('home-hero_1.png', class: 'home-hero__cards_img') %>
+				<p class="home-hero-header__p">
+					Шлем <br><span class="home-hero-header__span">Бесплатно</span>
+				</p>
+			</div>
+
+			<div class="home-hero__cards">
+				<%= image_tag('home-hero_2.png', class: 'home-hero__cards_img') %>
+				<p class="home-hero-header__p">
+					Фонарик <br><span class="home-hero-header__span">Бесплатно</span>
+				</p>
+			</div>
+
+			<div class="home-hero__cards">
+				<%= image_tag('home-hero_3.png', class: 'home-hero__cards_img') %>
+				<p class="home-hero-header__p">
+					Замок <br><span class="home-hero-header__span">Бесплатно</span>
+				</p>
+			</div>
+		</div> -->
+	</div>
+
+	<div class="park-type-bike">
+		
+		<h2 class="park-section__title">Выберите велосипед</h2>
+		<div class="park-section-box">
+		  <% @bikes.each do |bike| %>
+		    <% if bike.free? %> <!-- Проверяем, является ли велосипед свободным -->
+		      <div class="park-section__block">
+		        <div style="margin-top: 50px;" class="park-section__block-img">
+		          <%= image_tag("bike.png") %>
+		          <div class="block-description description"><%= bike.description %></div>
+		        </div>
+		        <div class="park-section__block-text">
+		          <h3 class="park-section__block-text__title"><%= bike.title %></h3>
+		          <div class="park-section__block-text-info">
+		            <p class="park-section__block-text__price"><%= bike.price %> Рублей</p>
+		            <div class="buttons-blox">
+		              <a href="#" class="button park-section__block-text__button park-section__block-text__button_que toggle-description">?</a>
+		              <a href="#" class="button park-section__block-text__button park-section__block-text__button_plus" data-bike-id="<%= bike.id %>">Выбрать</a>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    <% end %>
+		  <% end %>
+		</div>
+	</div>
+
+	<% if user_signed_in? %>
+	<a href="#" class="button park-section__button" id="continue-button">Далее</a>
+	<% else %>
+	<a href="<%= new_user_session_path %>" class="button park-section__button action-menu__link-new">
+		Далее
+	</a>
+	<% end %>
+	
+</section>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		const continueButton = document.getElementById("continue-button");
+		const bikeButtons = document.querySelectorAll(".park-section__block-text__button_plus");
+
+		continueButton.addEventListener("click", function(event) {
+			event.preventDefault();
+			const selectedBikes = [];
+			bikeButtons.forEach(function(button) {
+				const bikeId = button.dataset.bikeId;
+				if (button.classList.contains("section__block-text__button_selected")) {
+					selectedBikes.push(bikeId);
+				}
+			});
+			if (selectedBikes.length > 0) {
+				window.location.href = "/orders/new?bikes=" + selectedBikes.join(",");
+			} else {
+				alert("Пожалуйста, выберите велосипеды перед продолжением.");
+			}
+		});
+
+		bikeButtons.forEach(function(button) {
+			button.addEventListener("click", function(event) {
+				event.preventDefault();
+				button.classList.toggle("section__block-text__button_selected");
+				if (button.textContent === "Выбрать") {
+					button.textContent = "Выбрано";
+				} else {
+					button.textContent = "Выбрать";
+				}
+			});
+		});
+
+
+
+		const toggleButtons = document.querySelectorAll(".toggle-description");
+
+		toggleButtons.forEach(function(button) {
+			button.addEventListener("click", function(event) {
+				event.preventDefault();
+				const description = button.closest(".park-section__block").querySelector(".block-description");
+				if (description) {
+					description.classList.toggle("show");
+				}
+			});
+		});
+	});
+
+</script>
+
+
+

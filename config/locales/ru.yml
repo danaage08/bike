@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    attributes:
+      bike:
+        types:
+          mountain: "Горный"
+          urban: "Городской"
+          urban_economy: "Городской эконом"
+          carbon: "Карбон"

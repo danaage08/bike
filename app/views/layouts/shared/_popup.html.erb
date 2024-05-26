@@ -1,0 +1,69 @@
+<section class="popup-wallpaper">
+    <div class="popup-autorization popup">
+        <div class="popup__header">
+            <nav class="popup__header__navbar">
+                <ul class="popup__header__menu">
+                    <li class="popup__header__item active__popup-item popup__header__item_login">
+                        Вход
+                    </li> 
+                    <li class="popup__header__item popup__header__item_register">
+                        Регистрация
+                    </li> 
+                </ul>
+                <a class="popup-form__close popup-form__close-profile">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a>
+            </nav>
+        </div>
+        <div class="popup__main">
+          <%= form_for(User.new, as: :user, url: session_path(:user), html: { class: "popup-form" }) do |f| %>
+            <label class="popup-form__phone-label popup-form-label">Логин*</label>
+            <%= f.text_field :email, class: "popup-form__phone-input popup-form-input", placeholder: "Введите логин" %>
+            <label class="popup-form__phone-label popup-form-label">Пароль*</label>
+            <%= f.password_field :password, class: "popup-form__phone-input popup-form-input", placeholder: "Введите пароль" %>
+            <%= f.submit "Войти", class: "popup-form__button button" %>
+          <% end %>
+        </div>
+
+
+        <div class="popup__main-register">
+          <%= form_for(User.new, url: registration_path(User), html: { class: "popup-form" }) do |f| %>
+            <label class="popup-form__phone-label popup-form-label">Имя*</label>
+            <%= f.text_field :name, class: "popup-form__phone-input popup-form-input", placeholder: "Введите имя" %>
+            <label class="popup-form__phone-label popup-form-label">Логин*</label>
+            <%= f.text_field :email, class: "popup-form__phone-input popup-form-input", placeholder: "Введите логин" %>
+            <label class="popup-form__phone-label popup-form-label">Пароль*</label>
+            <%= f.password_field :password, class: "popup-form__phone-input popup-form-input", placeholder: "Введите пароль" %>
+            <div class="checkbox-box">
+                <input class="contacts-form__checkbox" type="checkbox" id="check1" name="consentCheckbox">
+                <label for="check1">Согласие на обработку персональных данных</label>
+            </div>
+            <%= f.submit "Регистрация", class: "popup-form__button button" %>
+          <% end %>
+        </div>
+
+    </div>
+
+    <div class="callback-popup popup">
+        <div class="popup__header">
+            <nav class="popup__header__navbar">
+                <h2 class="title callbacl-popup__title">Есть вопросы? Оставьте номер, и мы всё обсудим</h2>
+                <a class="popup-form__close popup-form__close-callback">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a>
+            </nav>
+        </div>
+
+        <div class="popup__main">
+            <form class="popup-form">
+                <input class="popup-form__phone-input popup-form-input" placeholder="Имя*">
+                <input type="phone" class="popup-form__phone-input popup-form-input" placeholder="Номер телефона">
+                <div class="checkbox-box">
+                    <input class="contacts-form__checkbox" type="checkbox" id="check2" name="consentCheckbox">
+                    <label for="check2">Согласие на обработку персональных данных</label>
+                </div>
+                <a class="popup-form__button button">Отправить</a>
+            </form>
+        </div>
+    </div>
+</section>

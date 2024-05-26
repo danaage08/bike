@@ -1,0 +1,46 @@
+<section class="section edit-profile__section">
+  <h2 class="title profile__title">Редактировать профиль</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="field">
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "edit-form__phone-input popup-form-input", placeholder: 'Имя' %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit-form__phone-input popup-form-input", placeholder: 'Логин' %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "email", class: "edit-form__phone-input popup-form-input", placeholder: 'Номер телефона' %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :delivery_address, autofocus: true, autocomplete: "email", class: "edit-form__phone-input popup-form-input", placeholder: 'Адрес доставки' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.password_field :password, class: "edit-form__phone-input popup-form-input", autocomplete: "new-password", placeholder: 'Новый пароль' %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, class: "edit-form__phone-input popup-form-input", autocomplete: "new-password", placeholder: 'Подтвердите новый пароль' %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :current_password, class: "edit-form__phone-input popup-form-input", placeholder: 'Старый пароль' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Редактировать", class: "popup-form__button button" %>
+  </div>
+<% end %>
+
+<%= link_to "Назад", :back, id: 'logout-button-but' %>
+</section>
+

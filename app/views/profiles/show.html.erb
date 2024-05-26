@@ -1,0 +1,398 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+    <section class="section section-message">
+        <% if flash[:notice].present? %>
+            <div class="message-good message">
+                <%= flash[:notice] %>
+            </div>
+        <% end %>
+
+        <% if flash[:alert].present? %>
+            <div class="message-bad message">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+        <span class="time-close">Окно закроется автоматически через 10 секунд</span>
+    </section>
+<% end %>
+
+<script>
+    // Отлавливаем клик по кнопке закрытия и скрываем сообщение
+    document.addEventListener('DOMContentLoaded', function() {
+        const closeButton = document.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.addEventListener('click', function() {
+                const messageSection = document.querySelector('.section-message');
+                if (messageSection) {
+                    messageSection.style.display = 'none';
+                }
+            });
+        }
+
+        // Автоматическое закрытие через 15 секунд
+        setTimeout(function() {
+            const messageSection = document.querySelector('.section-message');
+            if (messageSection) {
+                messageSection.style.display = 'none';
+            }
+        }, 10000);
+    });
+</script>
+
+
+<section class="section section-profile">
+<!-- 	<%= @user.name %>
+ -->
+
+ 	<div class="profile-header">
+ 		<h2 class="title profile__title">Личный кабинет</h2>
+ 		<ul class="profile__menu">
+ 			<li class="profile__menu__item profile__menu__item_active">
+ 				Текущие заказы
+ 			</li>
+ 			<li class="profile__menu__item">
+ 				Выполненые заказы
+ 			</li>
+ 			<li class="profile__menu__item">
+ 				Личные данные
+ 			</li>
+ 		</ul>
+ 	</div>
+
+ 	<div id="current_orders" class="profile-main-order">
+  <ul class="profile-order-list">
+    <li class="profile-order-list__item">
+      <span class="profile-order-list__span">Номер заказа</span>
+    </li>
+    <li class="profile-order-list__item">
+      <span class="profile-order-list__span">Дата начала</span>
+    </li>
+    <li class="profile-order-list__item">
+      <span class="profile-order-list__span">Дата конца</span>
+    </li>
+    <li class="profile-order-list__item">
+      <span class="profile-order-list__span">Оплата</span>
+    </li>
+    <li class="profile-order-list__item">
+      <span class="profile-order-list__span">Статус</span>
+    </li>
+  </ul>
+  <div class="orders-box">
+    <% @summ_c = 0 %>
+    <% if @user_orders.present? %>
+      <% @user_orders.reverse.each do |order| %>
+        <% unless order.completed? %>
+        <% @summ_c += 1 %>
+          <ul class="order">
+            <li class="order__item order__item-button">
+              <span class="order__span order__span_num"><i class="fa-solid fa-chevron-down"></i> Заказ №<%= order.id %></span>
+            </li>
+
+            <li class="order__item">
+              <% if order.start_date.present? %>
+                <span class="order__span order__span_date"><%= order.start_date.strftime("%d.%m.%Y") %></span>
+              <% else %>
+                <span class="order__span order__span_date">Дата не указана</span>
+              <% end %>
+            </li>
+
+            <li class="order__item">
+              <% if order.start_date.present? %>
+                <span class="order__span order__span_date"><%= order.end_date.strftime("%d.%m.%Y") %></span>
+              <% else %>
+                <span class="order__span order__span_date">Дата не указана</span>
+              <% end %>
+            </li>
+
+            <li class="order__item">
+            <% case order.status %>
+            <% when "pay" %>
+              	<span class="order__span order__span_date">Оплачено</span>
+             <% when "no_pay" %>
+             	<span class="order__span order__span_date">Не оплачено</span>
+             <% end %>
+            </li>
+
+            <li class="order__item">
+              <% case order.admin_status %>
+              <% when "in_processing" %>
+                <span class="order__span order__span_date order__span_status-obr">В обработке</span>
+              <% when "delivering" %>
+                <span class="order__span order__span_date order__span_status-dost">Доставляется</span>
+              <% when "in_progress" %>
+                <span class="order__span order__span_date order__span_status-work">Выполняется</span>
+              <% when "cancel" %>
+                <span class="order__span order__span_date order__span_status-cancel">Отменен</span>
+              <% end %>
+            </li>
+          </ul>
+          <div class="order-info">
+            <div class="info-order">
+              <div class="info-order-1">
+                <ul class="info-order__menu">
+                  <li class="info-order__item">
+                    <span class="profile-order-list__span">Информация об аренде</span>
+                  </li>
+                </ul>
+                <ul class="order-info-menu">
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Тип аренды: По дням</span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Период аренды: <%= order.start_date %> - <%= order.end_date %></span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Тип оплаты: на месте</span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Общая сумма заказа: <%= order.total_price %></span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-order-2">
+                <ul class="order-info-menu">
+                    <% case order.admin_status %>
+                      <% when "cancel" %>
+                      <% when 'delivering' %>
+                        <li class="order-info-menu___item">
+                          <%= link_to "Продлить на день", extend_order_path(order.id), class: "button button-order button_read" %>
+                        </li>
+                      <% when 'in_progress' %>
+                        <li class="order-info-menu___item">
+                          <%= link_to "Продлить на день", extend_order_path(order.id), class: "button button-order button_read" %>
+                        </li>
+                      <% else %>
+                        <li class="order-info-menu___item">
+                          <%= form_with(url: cancel_order_path(order.id), method: :patch, remote: true) do |form| %>
+                            <%= form.submit "Отменить заказ", class: "button button-order button_cancel" %>
+                          <% end %>
+                        </li>
+                        <li class="order-info-menu___item">
+                          <%= link_to "Продлить на день", extend_order_path(order.id), class: "button button-order button_read" %>
+                        </li>
+                      <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if @summ_c == 0 %>
+      <h2 class="title order-title">У вас нет активных заказов</h2>
+    <% end %>
+  </div>
+</div>
+
+
+ 	<div id="completed_orders" class="profile-main-order-old">
+ 		<ul class="profile-order-list">
+ 			<li class="profile-order-list__item">
+ 				<span class="profile-order-list__span">Номер заказа</span>
+ 			</li>
+ 			<li class="profile-order-list__item">
+ 				<span class="profile-order-list__span">Дата начала</span>
+ 			</li>
+ 			<li class="profile-order-list__item">
+ 				<span class="profile-order-list__span">Дата конца</span>
+ 			</li>
+ 			<li class="profile-order-list__item">
+ 				<span class="profile-order-list__span">Оплата</span>
+ 			</li>
+ 			<li class="profile-order-list__item">
+ 				<span class="profile-order-list__span">Статус</span>
+ 			</li>
+ 		</ul>
+ 		<div class="orders-box">
+  <% if @user_orders.present? && @user_orders.completed.any? %>
+    <% @user_orders.completed.each do |order| %>
+      <ul class="order">
+         <li class="order__item order__item-button">
+              <span class="order__span order__span_num"><i class="fa-solid fa-chevron-down"></i> Заказ №<%= order.id %></span>
+            </li>
+
+        <li class="order__item">
+          <% if order.start_date.present? %>
+            <span class="order__span order__span_date"><%= order.start_date.strftime("%d.%m.%Y") %></span>
+          <% else %>
+            <span class="order__span order__span_date">Дата не указана</span>
+          <% end %>
+        </li>
+
+        <li class="order__item">
+          <% if order.start_date.present? %>
+            <span class="order__span order__span_date"><%= order.end_date.strftime("%d.%m.%Y") %></span>
+          <% else %>
+            <span class="order__span order__span_date">Дата не указана</span>
+          <% end %>
+        </li>
+
+        <li class="order__item">
+          <span class="order__span order__span_date">Оплачено</span>
+        </li>
+
+        <li class="order__item">
+            <span class="order__span order__span_date order__span_status-read">Выполнено</span>
+        </li>
+      </ul>
+                <div class="order-info">
+            <div class="info-order">
+              <div class="info-order-1">
+                <ul class="info-order__menu">
+                  <li class="info-order__item">
+                    <span class="profile-order-list__span">Информация об аренде</span>
+                  </li>
+                </ul>
+                <ul class="order-info-menu">
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Тип аренды: По дням</span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Период аренды: <%= order.start_date %> - <%= order.end_date %></span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Тип оплаты: на месте</span>
+                  </li>
+                  <li class="order-info-menu___item">
+                    <span class="order__span">Общая сумма заказа: <%= order.total_price %></span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-order-2">
+                <ul class="order-info-menu">
+                    <% case order.admin_status %>
+                      <% when "cancel" %>
+                      <% else %>
+                        <li class="order-info-menu___item">
+                          <a href="<%= new_order_review_path(order) %>" class="button button-order button_read">Оставить отзыв</a>
+                        </li>
+                      <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+    <% end %>
+  <% else %>
+  <h2 class="title order-title">У вас пока нет завершенных заказов:(</h2>
+  <% end %>
+</div>
+
+ 	</div>
+
+ 	<div id="personal_data" class="profile-data">
+ 		<ul class="profile-data-menu">
+ 			<li class="profile-data-menu__item">
+ 				<span class="profile-data__span">Имя</span><br>
+ 				<span class="profile-data__d"><%= @user.name %></span>
+ 			</li>
+ 			<li class="profile-data-menu__item">
+ 				<span class="profile-data__span">E-mail</span><br>
+ 				<span class="profile-data__d"><%= @user.email %></span>
+ 			</li>
+ 			<li class="profile-data-menu__item profile-data-menu__item-new">
+        <span class="profile-data__span">Номер телефона</span><br>
+        <span class="profile-data__d"><%= @user.phone_number %></span>
+      </li>
+      <li class="profile-data-menu__item profile-data-menu__item-new">
+        <span class="profile-data__span">Адрес доставки</span><br>
+        <span class="profile-data__d"><%= @user.delivery_address %></span>
+      </li>
+ 		</ul>
+    <div class="button-box-profile" style="margin: -10px 50px;">
+            <span class="link_edit"><%= link_to 'Редактировать профиль', edit_user_registration_path %></span>
+      <%= link_to 'Выход', destroy_user_session_path, method: :delete, id: 'logout-button' %>
+    </div>
+
+	</div>
+
+ 	<!-- <div class="profile-main-user-data">
+ 		<%= link_to 'Выход', destroy_user_session_path, method: :delete, id: 'logout-button' %>
+ 	</div> -->
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.order__item-button').forEach(function(button, index) {
+    button.addEventListener('click', function(event) {
+      // Предотвращаем действие по умолчанию (например, переход по ссылке)
+      event.preventDefault();
+      
+      // Находим все элементы с классом "order-info"
+      var orderInfos = document.querySelectorAll('.order-info');
+      
+      // Получаем элемент .order-info с тем же индексом, что и кнопка, на которую был произведен клик
+      var orderInfo = orderInfos[index];
+      
+      // Переключаем класс "active" для отображения/скрытия блока информации о заказе
+      if (orderInfo) {
+        orderInfo.classList.toggle('active');
+      }
+    });
+  });
+});
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    let currentOrdersTab = document.querySelector('.profile__menu__item:nth-child(1)');
+    let completedOrdersTab = document.querySelector('.profile__menu__item:nth-child(2)');
+    let personalDataTab = document.querySelector('.profile__menu__item:nth-child(3)');
+    let currentOrdersContent = document.getElementById('current_orders');
+    let completedOrdersContent = document.getElementById('completed_orders');
+    let personalDataContent = document.getElementById('personal_data');
+
+    currentOrdersTab.onclick = function() {
+        completedOrdersContent.style.display = "none";
+        personalDataContent.style.display = "none";
+        currentOrdersContent.style.display = "block";
+        currentOrdersTab.classList.add('profile__menu__item_active');
+        completedOrdersTab.classList.remove('profile__menu__item_active');
+        personalDataTab.classList.remove('profile__menu__item_active');
+    };
+
+    completedOrdersTab.onclick = function() {
+        currentOrdersContent.style.display = "none";
+        personalDataContent.style.display = "none";
+        completedOrdersContent.style.display = "block";
+        completedOrdersTab.classList.add('profile__menu__item_active');
+        currentOrdersTab.classList.remove('profile__menu__item_active');
+        personalDataTab.classList.remove('profile__menu__item_active');
+    };
+
+    personalDataTab.onclick = function() {
+        currentOrdersContent.style.display = "none";
+        completedOrdersContent.style.display = "none";
+        personalDataContent.style.display = "block";
+        personalDataTab.classList.add('profile__menu__item_active');
+        currentOrdersTab.classList.remove('profile__menu__item_active');
+        completedOrdersTab.classList.remove('profile__menu__item_active');
+    };
+});
+
+
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('logout-button').addEventListener('click', function(event) {
+    event.preventDefault(); // Отменяем стандартное действие по клику по ссылке
+    var url = this.getAttribute('href');
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    }).then(function(response) {
+    window.location.href = 'http://127.0.0.1:3000/'; // Перенаправляем на главную страницу
+    window.location.reload(); // Перезагружаем страницу
+    }).catch(function(error) {
+      console.error('Ошибка при отправке запроса на выход:', error);
+    });
+  });
+});
+
+
+</script>
