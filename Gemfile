@@ -12,6 +12,7 @@ gem 'rack'
 
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
+gem 'mini_racer', platforms: :ruby
 
 
 
