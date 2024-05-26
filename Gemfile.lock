@@ -160,6 +160,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    libv8 (3.16.14.19.1-x86_64-linux)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -236,6 +237,7 @@ GEM
       i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    ref (2.0.0)
     regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
@@ -272,6 +274,9 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -309,6 +314,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  execjs
   importmap-rails
   jbuilder
   pg
@@ -320,6 +326,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  therubyracer
   turbo-rails
   tzinfo-data
   web-console
