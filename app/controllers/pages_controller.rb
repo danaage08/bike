@@ -25,4 +25,20 @@ class PagesController < ApplicationController
     @page_title = '| О нас'
     @reviews = Review.last(3).reverse
   end
+
+  def create_helpt
+    @helpt = Helpt.new(helpt_params)
+    if @helpt.save
+      redirect_to root_path, notice: 'Заявка успешно отправлена'
+    else
+      flash.now[:alert] = 'Произошла ошибка при отправке заявки'
+      render :contacts # Или любой другой шаблон, где у вас форма контактов
+    end
+  end
+
+  private
+
+  def helpt_params
+    params.require(:helpt).permit(:name, :phone_number, :status)
+  end
 end

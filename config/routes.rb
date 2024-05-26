@@ -34,6 +34,11 @@ resources :orders do
   resource :review, only: [:new, :create]
 end
 
+Rails.application.routes.draw do
+  post '/contacts/create_helpt', to: 'contacts#create_helpt', as: :create_helpt
+end
+
+
 get 'profile', to: 'profiles#show', as: :profile
 
 end

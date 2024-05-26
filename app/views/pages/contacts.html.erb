@@ -18,17 +18,16 @@
 			</div>
 		</div>
 
-		<form class="contacts-form" action="#">
-			<span class="contacts-box-info__block-title contacts-title">Оставить заявку</span>
-			<p class="contacts-form__subtitle">Остались вопросы? Свяжитесь с нами</p>
-			<input type="text" class="contacts-form__input input" placeholder="Имя*">
-			<input type="text" class="contacts-form__input input" placeholder="Номер телефона*">
-			<label class="contacts-form__label" for="consentCheckbox" style="display: flex; align-items: center; 	margin: 25px 0;">
-	            <input class="contacts-form__checkbox" type="checkbox" id="consentCheckbox" name="consentCheckbox">
-	            <span class="contacts-form__checkbox-text">Согласие на обработку персональных данных</span>
-	        </label>
-			<button class="button contacts-form__button" type="submit">Отправить</button>
-		</form>
+		<%= form_with(url: create_helpt_path, method: :post, local: true) do |form| %>
+		  <%= form.text_field :name, class: "contacts-form__input input", placeholder: "Имя*" %>
+		  <%= form.text_field :phone_number, class: "contacts-form__input input", placeholder: "Номер телефона*" %>
+		  <%= form.label :consentCheckbox, class: "contacts-form__label" do %>
+		    <%= form.check_box :consentCheckbox, class: "contacts-form__checkbox" %>
+		    <span class="contacts-form__checkbox-text">Согласие на обработку персональных данных</span>
+		  <% end %>
+		  <%= form.submit "Отправить", class: "button contacts-form__button", data: { turbolinks: false } %>
+		<% end %>
+
 
 
 	</div>
