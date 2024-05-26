@@ -1,0 +1,9 @@
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+# Добавьте другие сервисы (например, Amazon S3) при необходимости
