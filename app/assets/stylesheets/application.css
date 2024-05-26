@@ -1696,3 +1696,261 @@ div.checkbox-box{
 .section-message{
 	margin-bottom: 30px;
 }
+
+
+/* Медиа-запрос для мобильных устройств */
+@media screen and (max-width: 576px) {
+  /* Стили для всех секций */
+  .section {
+    padding: 20px;
+  }
+
+  /* Стили для заголовков */
+  .park-section__title,
+  .home-hero__title,
+  .reviews-title,
+  .profile-type__title,
+  .title,
+  .section-new-order-title,
+  .message {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Стили для текста */
+  .park-section__block-text__title,
+  .park-section__block-text__price,
+  .park-section__block-text__button,
+  .about-box,
+  .fa-spinner,
+  .fa-envelope,
+  .fa-thumbs-up,
+  .fa-solid.fa-fire,
+  .reviews__author,
+  .rules-blog-title,
+  .field-span,
+  .info-order .order__span,
+  .info-order-2,
+  .order-info-menu___item,
+  .button-order,
+  .actions,
+  .button_cancel,
+  .button_read,
+  .button-reviews,
+  .section-message .title,
+  .section-message .time-close,
+  .park-section__block-text__button_que,
+  .park-section__block-text__button_plus,
+  .order-title,
+  .section__block-text__button_selected,
+  .info-order__item,
+  .profile-data__span,
+  .link_edit a {
+    font-size: 16px;
+  }
+
+  /* Стили для блоков с картинками */
+  .park-section__block-img,
+  .rules-blog-img,
+  .bike-img,
+  .order-div img {
+    width: 100%;
+  }
+
+  /* Скрытие элементов */
+  .home-hero__cards:nth-child(1),
+  .home-hero__cards:nth-child(2),
+  .profile-main-order,
+  .profile-data {
+    display: none;
+  }
+
+  /* Стили для меню и кнопок */
+  .profile__menu {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .profile__menu__item {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #DDE3EB;
+  }
+
+  .profile__menu__item_active,
+  .profile__menu__item:hover {
+    border-bottom: 2px solid #297FFF;
+    color: #297FFF;
+    cursor: pointer;
+  }
+
+  .buttons-blox,
+  .field-box {
+    flex-direction: column;
+  }
+
+  .park-section__block-text__button {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .button-order,
+  .button-reviews,
+  .button-cancel,
+  .button_read,
+  .review-button-click,
+  .button-back,
+  .popup-form__button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .actions,
+  .order-info-menu___item {
+    margin-top: 20px;
+  }
+
+  .park-section-box,
+  .reviews-box-new {
+    justify-content: center;
+  }
+
+  .park-section__block {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  .reviews-box__block .reviews-box-new__card {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  .profile-data-menu,
+  .order-info-menu {
+    padding: 10px 20px;
+  }
+
+  .order-info {
+    margin: 20px 0;
+  }
+
+  .profile-data-menu__item,
+  .order-info-menu___item {
+    text-align: center;
+  }
+
+  .field-box input,
+  .review-text {
+    font-size: 16px;
+  }
+
+  .order-div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Стили для верхнего заголовка */
+.home-hero__title {
+  font-size: 28px;
+  padding-bottom: 20px;
+}
+
+/* Стили для блоков с изображениями в героях */
+.home-hero__header-images-box {
+  flex-direction: column;
+}
+
+/* Стили для блоков с картами */
+.park-section__block {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Стили для кнопок */
+.button {
+  font-size: 16px;
+  padding: 15px 30px;
+}
+
+/* Стили для блоков с отзывами */
+.reviews-box__block {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Стили для блоков с информацией */
+.info-order {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Стили для кнопок в заказе */
+.order__item-button {
+  margin-top: 20px;
+}
+
+/* Стили для меню пользователя */
+.profile__menu {
+  margin-top: 20px;
+}
+
+/* Стили для пунктов меню пользователя */
+.profile__menu__item {
+  width: 100%;
+  padding: 15px 0;
+}
+
+/* Стили для кнопок в меню пользователя */
+.link_edit a,
+#logout-button {
+  margin-top: 20px;
+  padding: 10px 15px;
+}
+
+/* Стили для блока с профилем */
+.profile-data {
+  margin-top: 20px;
+}
+
+/* Стили для кнопок в блоке с профилем */
+.button-profile {
+  margin-top: 20px;
+}
+
+/* Стили для блока с типом профиля */
+.profile-type {
+  margin-top: 20px;
+}
+
+/* Стили для кнопок в блоке с типом профиля */
+.profile-type-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Стили для блока с отзывом */
+.review-box {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Стили для кнопки отправки отзыва */
+.button-reviews {
+  margin-top: 20px;
+}
+
+/* Стили для формы отзыва */
+.review-form {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Стили для кнопки закрытия попапа */
+.popup-form__close {
+  top: -50px;
+}
+
+}
