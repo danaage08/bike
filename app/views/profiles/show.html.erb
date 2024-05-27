@@ -64,13 +64,13 @@
       <span class="profile-order-list__span">Номер заказа</span>
     </li>
     <li class="profile-order-list__item">
-      <span class="profile-order-list__span">Дата начала</span>
+      <span class="profile-order-list__span sh">Дата начала</span>
     </li>
     <li class="profile-order-list__item">
-      <span class="profile-order-list__span">Дата конца</span>
+      <span class="profile-order-list__span sh">Дата конца</span>
     </li>
     <li class="profile-order-list__item">
-      <span class="profile-order-list__span">Оплата</span>
+      <span class="profile-order-list__span sh">Оплата</span>
     </li>
     <li class="profile-order-list__item">
       <span class="profile-order-list__span">Статус</span>
@@ -106,9 +106,9 @@
             <li class="order__item">
             <% case order.status %>
             <% when "pay" %>
-              	<span class="order__span order__span_date">Оплачено</span>
+              	<span class="order__span order__span_date sh">Оплачено</span>
              <% when "no_pay" %>
-             	<span class="order__span order__span_date">Не оплачено</span>
+             	<span class="order__span order__span_date sh">Не оплачено</span>
              <% end %>
             </li>
 
