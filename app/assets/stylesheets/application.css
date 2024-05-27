@@ -1917,4 +1917,23 @@ input.button.contacts-form__button{
       .action-menu__item_bars {
         display: block;
       }
+      .park-section__button{
+      	width: 80%;
+      	margin: 0 auto;
+      	text-align: center;
+      }
+
+      .park-section-box{
+      	flex-direction: column;
+      	justify-content: center;
+      	align-items: center;
+      }
+      .park-section__block{
+      	width: 100%;
+      	margin: 15px 0;
+      }
+      .field-box{
+      	flex-wrap: nowrap;
+      	margin: 20px 0;
+      }
     }
