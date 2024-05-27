@@ -58,7 +58,7 @@
 				</span>
 			</li>
 
-			<li class="action-menu__item">
+			<li class="action-menu__item action-menu__item-time">
 				<div class="action-menu__time">
 					<span class="menu-time">12:00</span><br>
 					<span class="menu-time__place">Время в Волгодонске</span>
@@ -74,6 +74,45 @@
 		</ul>
 	</div>
 </header>
+
+<div class="popup-menu hidden">
+    <span class="popup-menu-close">&times;</span>
+    <ul class="popup-mnu">
+      <li class="popup-mnu-item">
+        <a href="<%= pages_about_path %>" class="menu__link <%= 'active' if current_page?(pages_about_path) %>">О нас</a>
+      </li>
+      <li class="popup-mnu-item">
+        <a href="<%= root_path %>" class="menu__link <%= 'active' if current_page?(root_path) %>">Аренда</a>
+      </li>
+      <li class="popup-mnu-item">
+        <a href="<%= pages_delivery_path %>" class="menu__link <%= 'active' if current_page?(pages_delivery_path) %>">Правила</a>
+      </li>
+      <li class="popup-mnu-item">
+        <a href="<%= pages_rules_path %>" class="menu__link <%= 'active' if current_page?(pages_rules_path) %>">Где кататься</a>
+      </li>
+      <li class="popup-mnu-item">
+        <a href="<%= pages_contacts_path %>" class="menu__link <%= 'active' if current_page?(pages_contacts_path) %>">Контакты</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var barsIcon = document.querySelector('.action-menu__item_bars');
+    var popupMenu = document.querySelector('.popup-menu');
+    var closeIcon = document.querySelector('.popup-menu-close');
+
+    barsIcon.addEventListener('click', function(event) {
+      event.preventDefault();
+      popupMenu.classList.remove('hidden');
+    });
+
+    closeIcon.addEventListener('click', function() {
+      popupMenu.classList.add('hidden');
+    });
+  });
+</script>
+
 
 <script>
 	function updateTime() {

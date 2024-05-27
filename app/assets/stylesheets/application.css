@@ -63,7 +63,7 @@ body{
 
 .action-menu__link {}
 .fa-regular {}
-.fa-user, .fa-user-tie {
+.fa-user, .fa-bars, .fa-user-tie {
 	font-size: 20px;
 	padding: 10px;
 	border: 2px solid #297FFF;
@@ -1898,8 +1898,8 @@ input.button.contacts-form__button{
         display: none;
       }
 
-      .action-menu__item.hidden {
-        display: block;
+      .action-menu__item_hide{
+      	display: block;
       }
 
       .action-menu {
@@ -1933,4 +1933,53 @@ input.button.contacts-form__button{
       .footer-menu{
       	display: none;
       }
+      .action-menu__item-time{
+      	display: none;
+      }
+      .park-type-bike{
+      	width: 100%;
+      }
     }
+
+    .popup-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-menu.hidden {
+    display: none;
+  }
+
+  .popup-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .popup-mnu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .popup-mnu-item {
+    margin: 20px 0;
+  }
+
+  .popup-mnu-item .menu__link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+  }
