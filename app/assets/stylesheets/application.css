@@ -1871,9 +1871,6 @@ input.button.contacts-form__button{
 
 /* Скрытие времени на мобильных устройствах */
 @media (max-width: 576px) {
-  .action-menu__item {
-    display: none;
-  }
 }
 
 /* Скрытие логотипа на мобильных устройствах */
@@ -1896,7 +1893,7 @@ input.button.contacts-form__button{
   }
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
       .menu {
         display: none;
       }
@@ -1923,6 +1920,7 @@ input.button.contacts-form__button{
       	flex-direction: column;
       	justify-content: center;
       	align-items: center;
+      	width: 100%;
       }
       .park-section__block{
       	width: 100%;
