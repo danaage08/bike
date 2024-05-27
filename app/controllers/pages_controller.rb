@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 
   def contacts
     @page_title = '| Контакты'
+    @review = Review.new
   end
 
   def about

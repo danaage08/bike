@@ -18,7 +18,7 @@
 			</div>
 		</div>
 
-		<%= form_with(url: create_helpt_path, method: :post, local: true) do |form| %>
+		<%= form_with(model: @helpt, method: :post, local: true) do |form| %>
 		  <%= form.text_field :name, class: "contacts-form__input input", placeholder: "Имя*" %>
 		  <%= form.text_field :phone_number, class: "contacts-form__input input", placeholder: "Номер телефона*" %>
 		  <%= form.label :consentCheckbox, class: "contacts-form__label" do %>
