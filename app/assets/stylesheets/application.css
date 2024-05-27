@@ -1903,11 +1903,6 @@ input.button.contacts-form__button{
       	display: block;
       }
 
-      .action-menu {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
       .action-menu__item_bars {
         display: block;
       }
@@ -1923,6 +1918,10 @@ input.button.contacts-form__button{
       	width: 100%;
       	background: red;
       }
+      .park-section-box .park-section__block{
+			width: 100%;
+			margin: 20px 0;
+		}
       .park-section__block{
       	width: 500px;
       	margin: 15px 0;
