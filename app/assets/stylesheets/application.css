@@ -1851,307 +1851,6 @@ div.checkbox-box{
     flex-direction: column;
     align-items: center;
   }
-
-  /* Стили для верхнего заголовка */
-.home-hero__title {
-  font-size: 28px;
-  padding-bottom: 20px;
-}
-
-/* Стили для блоков с изображениями в героях */
-.home-hero__header-images-box {
-  flex-direction: column;
-}
-
-/* Стили для блоков с картами */
-.park-section__block {
-  width: 90%;
-  margin: 20px auto;
-}
-
-/* Стили для кнопок */
-.button {
-  font-size: 16px;
-  padding: 15px 30px;
-}
-
-/* Стили для блоков с отзывами */
-.reviews-box__block {
-  width: 90%;
-  margin: 20px auto;
-}
-
-/* Стили для блоков с информацией */
-.info-order {
-  width: 90%;
-  margin: 20px auto;
-}
-
-/* Стили для кнопок в заказе */
-.order__item-button {
-  margin-top: 20px;
-}
-
-/* Стили для меню пользователя */
-.profile__menu {
-  margin-top: 20px;
-}
-
-/* Стили для пунктов меню пользователя */
-.profile__menu__item {
-  width: 100%;
-  padding: 15px 0;
-}
-
-/* Стили для кнопок в меню пользователя */
-.link_edit a,
-#logout-button {
-  margin-top: 20px;
-  padding: 10px 15px;
-}
-
-/* Стили для блока с профилем */
-.profile-data {
-  margin-top: 20px;
-}
-
-/* Стили для кнопок в блоке с профилем */
-.button-profile {
-  margin-top: 20px;
-}
-
-/* Стили для блока с типом профиля */
-.profile-type {
-  margin-top: 20px;
-}
-
-/* Стили для кнопок в блоке с типом профиля */
-.profile-type-button {
-  width: 100%;
-  margin-top: 20px;
-}
-
-/* Стили для блока с отзывом */
-.review-box {
-  width: 90%;
-  margin: 20px auto;
-}
-
-/* Стили для кнопки отправки отзыва */
-.button-reviews {
-  margin-top: 20px;
-}
-
-/* Стили для формы отзыва */
-.review-form {
-  width: 90%;
-  margin: 20px auto;
-}
-
-/* Стили для кнопки закрытия попапа */
-.popup-form__close {
-  top: -50px;
-}
-/* Уменьшение отступов и размеров шрифтов для более компактного вида */
-.section-new-order-title {
-  font-size: 24px;
-  padding-bottom: 15px;
-}
-
-.park-section__block-text__title,
-.rules-blog-title {
-  font-size: 16px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-
-/* Уменьшение размера изображений для экономии места на мобильных экранах */
-.bike-img {
-  width: 80%;
-}
-
-.rules-blog-img {
-  width: 100%;
-  height: 150px;
-}
-
-/* Уменьшение размера кнопок */
-.button-order,
-.profile-type-button {
-  padding: 12px 25px;
-  font-size: 14px;
-}
-
-/* Уменьшение размера заголовков отзывов */
-.reviews-title {
-  font-size: 24px;
-}
-
-/* Уменьшение размера и отступов отзывов */
-.reviews-box-new__card {
-  padding: 15px 20px;
-  margin: 10px auto;
-}
-
-/* Уменьшение размера формы отзыва */
-.review-form {
-  width: 80%;
-  margin: 20px auto;
-}
-
-.review-text {
-  height: 20vh;
-}
-
-/* Уменьшение отступов и размеров текста для мобильных экранов */
-.info-order__item,
-.profile-data-menu__item {
-  padding: 10px 0;
-  font-size: 14px;
-}
-
-/* Скрытие элементов, которые могут быть излишними на мобильных экранах */
-.home-hero__header-images-box {
-  display: none;
-}
-
-.rules-two-section-box__block {
-  width: 100%;
-}
-
-.bike-list__header {
-  display: none;
-}
-
-/* Уменьшение размеров элементов меню пользователя */
-.profile__menu__item {
-  font-size: 14px;
-  padding: 10px 0;
-}
-/* Уменьшение отступов для более компактного вида */
-.park-section__block-text__title,
-.rules-blog-title {
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
-/* Уменьшение размера изображений */
-.bike-img {
-  width: 100%;
-  height: auto;
-}
-
-.rules-blog-img {
-  width: 100%;
-  height: 150px;
-}
-
-/* Уменьшение размера кнопок */
-.button-order,
-.profile-type-button {
-  padding: 12px 25px;
-  font-size: 16px;
-}
-
-/* Уменьшение размера заголовков отзывов */
-.reviews-title {
-  font-size: 24px;
-}
-
-/* Уменьшение размера и отступов отзывов */
-.reviews-box-new__card {
-  padding: 15px 20px;
-  margin: 10px auto;
-}
-
-/* Уменьшение размера формы отзыва */
-.review-form {
-  width: 80%;
-  margin: 20px auto;
-}
-
-.review-text {
-  height: 20vh;
-}
-
-/* Уменьшение отступов и размеров текста для мобильных экранов */
-.info-order__item,
-.profile-data-menu__item {
-  padding: 10px 0;
-  font-size: 14px;
-}
-
-/* Скрытие элементов, которые могут быть излишними на мобильных экранах */
-.home-hero__header-images-box {
-  display: none;
-}
-
-.rules-two-section-box__block {
-  width: 100%;
-}
-
-.bike-list__header {
-  display: none;
-}
-
-/* Уменьшение размеров элементов меню пользователя */
-.profile__menu__item {
-  font-size: 14px;
-  padding: 10px 0;
-}
-
-/* Уменьшение отступов между элементами */
-.section-new-order {
-  padding: 20px;
-}
-
-/* Уменьшение отступов для блока с информацией о заказе */
-.info-order {
-  padding: 10px 0;
-}
-
-/* Уменьшение размера и отступов текста */
-.order__span {
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-/* Уменьшение отступов для списка велосипедов */
-.bike-list {
-  margin: 10px 0;
-}
-
-/* Уменьшение отступов для блока с кнопками */
-.actions {
-  margin-top: 20px;
-}
-
-/* Уменьшение отступов для блока с отзывами */
-.section-reviews {
-  padding: 20px;
-}
-
-/* Уменьшение размера кнопок для формы отзыва */
-.review-button-click {
-  font-size: 16px;
-  padding: 10px 20px;
-}
-
-}
-
-/* Скрытие времени на мобильных устройствах */
-@media (max-width: 576px) {
-  .home-hero__time {
-    display: none;
-  }
-}
-
-/* Скрытие логотипа на мобильных устройствах */
-@media (max-width: 576px) {
-  .home-hero__logo {
-    display: none;
-  }
 }
 
 div.contacts-box form{
@@ -2168,4 +1867,27 @@ label.contacts-form__label{
 
 input.button.contacts-form__button{
     margin-top: 5px;
+}
+
+/* Скрытие времени на мобильных устройствах */
+@media (max-width: 576px) {
+  .home-hero__time {
+    display: none;
+  }
+}
+
+/* Скрытие логотипа на мобильных устройствах */
+@media (max-width: 576px) {
+  .home-hero__logo {
+    display: none;
+  }
+  div.contacts-box form{
+  	display: none;
+  }
+  .rules-conditions-box{
+  	flex-direction: column;
+  }
+  .ules-conditions__block{
+  	margin: 15px 0;
+  }
 }
