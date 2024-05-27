@@ -1940,6 +1940,10 @@ input.button.contacts-form__button{
       .park-type-bike{
       	width: 100%;
       }
+      .action-menu{
+      	display: flex;
+      	align-items: center;
+      }
     }
 
     .popup-menu {
