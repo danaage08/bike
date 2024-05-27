@@ -1901,10 +1901,6 @@ input.button.contacts-form__button{
         display: none;
       }
 
-      .action-menu__item {
-        display: none;
-      }
-
       .action-menu__item.hidden {
         display: block;
       }
@@ -1935,5 +1931,8 @@ input.button.contacts-form__button{
       .field-box{
       	flex-wrap: nowrap;
       	margin: 20px 0;
+      }
+      .footer-menu{
+      	display: none;
       }
     }
