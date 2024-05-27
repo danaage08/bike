@@ -95,23 +95,21 @@
       </li>
     </ul>
   </div>
-
-  <script>
+  
+<script>
   document.addEventListener('DOMContentLoaded', function() {
-    var barsIcon = document.querySelector('.action-menu__item_bars');
+    var barsIcon = document.querySelector('.action-menu__item_bars i');
     var popupMenu = document.querySelector('.popup-menu');
-    var closeIcon = document.querySelector('.popup-menu-close');
 
     barsIcon.addEventListener('click', function(event) {
       event.preventDefault();
-      popupMenu.classList.remove('hidden');
-    });
-
-    closeIcon.addEventListener('click', function() {
-      popupMenu.classList.add('hidden');
+      popupMenu.classList.toggle('hidden');
+      barsIcon.classList.toggle('fa-bars');
+      barsIcon.classList.toggle('fa-xmark');
     });
   });
 </script>
+
 
 
 <script>

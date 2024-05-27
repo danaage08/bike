@@ -63,7 +63,7 @@ body{
 
 .action-menu__link {}
 .fa-regular {}
-.fa-user, .fa-bars, .fa-user-tie {
+.fa-user, .fa-bars, .fa-user-tie, .fa-xmark {
 	font-size: 20px;
 	padding: 10px;
 	border: 2px solid #297FFF;
@@ -1921,6 +1921,7 @@ input.button.contacts-form__button{
       	justify-content: center;
       	align-items: center;
       	width: 100%;
+      	background: red;
       }
       .park-section__block{
       	width: 100%;
