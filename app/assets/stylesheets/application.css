@@ -1919,13 +1919,13 @@ input.button.contacts-form__button{
       .park-section-box{
       	flex-direction: column;
       	justify-content: center;
-      	align-items: center;
       	width: 100%;
       	background: red;
       }
       .park-section__block{
       	width: 100%;
       	margin: 15px 0;
+      	background: green;
       }
       .field-box{
       	flex-wrap: nowrap;
