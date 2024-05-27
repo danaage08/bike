@@ -1878,9 +1878,6 @@ input.button.contacts-form__button{
 
 /* Скрытие логотипа на мобильных устройствах */
 @media (max-width: 576px) {
-  .logo {
-    display: none;
-  }
   div.contacts-box form{
   	display: none;
   }
