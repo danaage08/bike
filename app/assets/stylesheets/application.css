@@ -1871,14 +1871,14 @@ input.button.contacts-form__button{
 
 /* Скрытие времени на мобильных устройствах */
 @media (max-width: 576px) {
-  .home-hero__time {
+  .action-menu__item {
     display: none;
   }
 }
 
 /* Скрытие логотипа на мобильных устройствах */
 @media (max-width: 576px) {
-  .home-hero__logo {
+  .logo {
     display: none;
   }
   div.contacts-box form{
@@ -1886,8 +1886,38 @@ input.button.contacts-form__button{
   }
   .rules-conditions-box{
   	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
   }
-  .ules-conditions__block{
+  .rules-conditions__block{
   	margin: 15px 0;
   }
+
+  .popup-wallpaper{
+  	width: 80%;
+  	margin: 0 auto;
+  }
 }
+
+@media screen and (max-width: 768px) {
+      .menu {
+        display: none;
+      }
+
+      .action-menu__item_bars {
+        display: block;
+      }
+
+      .action-menu__item {
+        display: none;
+      }
+
+      .action-menu__item.hidden {
+        display: block;
+      }
+
+      .action-menu {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
