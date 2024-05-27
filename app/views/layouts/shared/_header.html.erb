@@ -32,11 +32,18 @@
 				<a href="tel: +79008009090" class="action-menu__link action-menu__phone">+79008009090</a>
 			</li>
 
+			<!-- <li class="action-menu__item">
+				<a class="action-menu__link">
+					<i class="fa-regular fa-user"></i>
+				</a>
+			</li> -->
+
 			<li class="action-menu__item">
 			  <% if user_signed_in? %>
 			    <%= link_to profile_path, class: "action-menu__link-user" do %>
 			      <i class="fa-solid fa-user-tie fa-user"></i>
 			      <a class="action-menu__link-new"></a>
+			      <!-- <i class="fa-regular fa-user fa-none"></i> -->
 			    <% end %>
 			  <% else %>
 			    <a class="action-menu__link-new">
@@ -84,17 +91,4 @@
 
 	updateTime();
 	setInterval(updateTime, 1000);
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var barsIcon = document.querySelector('.action-menu__item_bars');
-    var menuItems = document.querySelectorAll('.action-menu__item:not(.action-menu__item_hide)');
-
-    barsIcon.addEventListener('click', function() {
-      menuItems.forEach(function(item) {
-        item.classList.toggle('hidden');
-      });
-    });
-  });
 </script>
