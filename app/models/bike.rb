@@ -1,6 +1,10 @@
 class Bike < ApplicationRecord
   has_many :orders
 
+  def available?(start_date, end_date)
+    orders.where("start_date < ? AND end_date > ?", end_date, start_date).none?
+  end
+
   enum status: { free: "Свободен", busy: "Занят" }
 
   def update_status
