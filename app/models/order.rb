@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   enum admin_status: { in_processing: "В обработке", check: "Забронировано", in_progress: "Выполняется", delivering: "Доставляется", completed: "Завершено", cancel: "Отменено" }
   enum status: { pay: "Оплачено", no_pay: "Не оплачено" }
 
+
   after_create :update_bike_status
 
   def update_bike_status
