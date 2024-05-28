@@ -170,6 +170,8 @@
               <% case order.admin_status %>
               <% when "in_processing" %>
                 <span class="order__span order__span_date order__span_status-obr">В обработке</span>
+              <% when "check" %>
+                <span class="order__span order__span_date order__span_status-work">Забронировано</span>
               <% when "delivering" %>
                 <span class="order__span order__span_date order__span_status-dost">Доставляется</span>
               <% when "in_progress" %>
