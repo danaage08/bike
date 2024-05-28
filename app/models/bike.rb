@@ -22,10 +22,9 @@ class Bike < ApplicationRecord
     overlapping_orders = Order.where("admin_status != 'completed' AND (
       start_date <= :end_date AND end_date >= :start_date
     )", start_date: start_date, end_date: end_date)
+    bike_ids_array = self.bike_ids.split(',').map(&:strip).reject(&:empty?)
 
-    bike_ids_array = order.bike_ids.split(',').map(&:strip).reject(&:empty?)
-
-    overlapping_orders.none? { |order| bike_ids_array.include?(self.id.to_s) }
+    overlapping_orders.none? { |order| order.bike_ids.include?(self.id.to_s) }
   end
 
   def self.ransackable_attributes(auth_object = nil)
