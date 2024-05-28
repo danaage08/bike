@@ -145,6 +145,7 @@ button:hover {
 		<%= form.hidden_field :bike_ids, value: @selecte_bikes %>
 
 	  <%= form.hidden_field :user_id, value: current_user.id %>
+	  <%= form.hidden_field :status, value: "Не оплачено" %>
 	  <%= form.hidden_field :admin_status, value: "in_processing" %>
 	  <%= form.hidden_field :total_price, id: "total-price" %>
 
@@ -154,21 +155,6 @@ button:hover {
 	  </div>
 	<% end %>
 </section>
-
-<script>
-	document.addEventListener('DOMContentLoaded', (event) => {
-    const onlinePaymentRadio = document.getElementById('type_pay_online');
-    const totalPriceField = document.getElementById('total-price');
-
-    onlinePaymentRadio.addEventListener('change', function() {
-        if (this.checked) {
-            <%= form.hidden_field :status, value: "Оплачено" %>
-        } else {
-        	<%= form.hidden_field :status, value: "Не оплачено" %>
-        }
-    });
-});
-</script>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
