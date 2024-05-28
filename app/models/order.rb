@@ -10,8 +10,7 @@ class Order < ApplicationRecord
 
   def update_bike_status
     self.bikes.each do |bike|
-      bike.update(status: :free)
-      if self.completed? || self.in_progress?
+      if self.completed? || self.in_processing?
         bike.update(status: :free)
       else
         bike.update(status: :busy)
