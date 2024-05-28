@@ -1,5 +1,51 @@
 
 <!-- app/views/orders/new.html.erb -->
+<style>
+	.field-label {
+    margin-bottom: 10px;
+}
+
+.field-label label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#days-difference {
+    font-size: 16px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
 <section class="section section-new-order">
 	<h2 class="title section-new-order-title">Заявка на аренду велосипедов</h2>
 
@@ -78,14 +124,18 @@
 				  <%= form.text_field :return_address, class: 'field-span__ex', required: true %>
 				<% end %>
 		  </div>
+
 	  </div>
 
-	<%#   <div class="field-label">
+	<div class="field-label">
 	  	<div class="field field-radio">
 	  		<input type="radio" id="type_pay" name="drone" value="pay_place" checked />
     		<label for="type_pay">Оплата на месте</label>
+
+    		<input type="radio" id="type_pay" name="drone" value="pay_place_online" />
+    		<label for="type_pay">Оплата на онлайн</label>
 	  	</div>
-	  </div> %>
+	  </div>
 
 	  <!-- Общая сумма заказа -->
 	  <div id="days-difference">Общая сумма заказа: 0</div>
@@ -105,6 +155,21 @@
 	  </div>
 	<% end %>
 </section>
+
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+    const onlinePaymentRadio = document.getElementById('type_pay_online');
+    const totalPriceField = document.getElementById('total-price');
+
+    onlinePaymentRadio.addEventListener('change', function() {
+        if (this.checked) {
+            totalPriceField.value = "Оплачено";
+        } else {
+            totalPriceField.value = "Не оплачено";
+        }
+    });
+});
+</script>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
