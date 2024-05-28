@@ -6,8 +6,8 @@
 }
 
 .field-label label {
-    margin-right: 10px;
-    font-weight: bold;
+    margin-right: 40px;
+    margin-bottom: -20px;
 }
 
 input[type="radio"] {
@@ -133,7 +133,7 @@ button:hover {
     		<label for="type_pay">Оплата на месте</label>
 
     		<input type="radio" id="type_pay" name="drone" value="pay_place_online" />
-    		<label for="type_pay">Оплата на онлайн</label>
+    		<label for="type_pay">Оплата онлайн</label>
 	  	</div>
 	  </div>
 
@@ -234,4 +234,33 @@ button:hover {
     document.getElementById('end-date').addEventListener('change', calculateDaysDifference);
   });
 
+</script>
+
+<script>
+	<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const startDateInput = document.getElementById("start-date");
+    const endDateInput = document.getElementById("end-date");
+
+    // Функция для установки минимальной даты для конечной даты
+    function setMinEndDate() {
+      const startDate = new Date(startDateInput.value);
+      const minEndDate = new Date(startDate);
+      minEndDate.setDate(startDate.getDate() + 1); // Минимальная конечная дата - следующий день после начальной
+      endDateInput.min = minEndDate.toISOString().split('T')[0]; // Устанавливаем минимальную дату для выбора
+    }
+
+    // Вызываем функцию при изменении даты начала
+    startDateInput.addEventListener('change', function() {
+      setMinEndDate(); // Устанавливаем минимальную дату для конечной даты
+      // Если выбранная конечная дата раньше новой минимальной даты, обновляем значение конечной даты
+      if (new Date(endDateInput.value) < new Date(startDateInput.value)) {
+        endDateInput.value = startDateInput.value;
+      }
+    });
+
+    // Вызываем функцию при загрузке страницы
+    setMinEndDate();
+  });
+</script>
 </script>
