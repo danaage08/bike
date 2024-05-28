@@ -19,7 +19,8 @@ class Bike < ApplicationRecord
   }
 
   def available?(start_date, end_date)
-    orders.where("admin_status != ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND start_date <= ?))", "completed", start_date, start_date, end_date, end_date, start_date, end_date).empty?
+    orders = Order.where("admin_status != ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND start_date <= ?))", "completed", start_date, start_date, end_date, end_date, start_date, end_date)
+    orders.none? { |order| order.bike_ids.split(',').include?(self.id.to_s) }
   end
 
   def self.ransackable_attributes(auth_object = nil)
