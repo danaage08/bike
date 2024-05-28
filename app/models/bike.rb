@@ -18,14 +18,12 @@ class Bike < ApplicationRecord
     carbon: "Карбон"
   }
 
-  def available?(start_date, end_date)
-    orders = Order.where("admin_status != 'completed' AND (
-      (start_date <= :end_date AND end_date >= :start_date) OR
-      (start_date <= :end_date AND end_date >= :start_date) OR
-      (start_date >= :start_date AND start_date <= :end_date)
+   def available?(start_date, end_date)
+    overlapping_orders = Order.where("admin_status != 'completed' AND (
+      start_date <= :end_date AND end_date >= :start_date
     )", start_date: start_date, end_date: end_date)
 
-    orders.none? { |order| order.bike_ids.split(',').include?(self.id.to_s) }
+    overlapping_orders.none? { |order| order.bike_ids.include?(self.bike_ids.to_s) }
   end
 
   def self.ransackable_attributes(auth_object = nil)
