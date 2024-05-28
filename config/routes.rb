@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/message'
   resources :feedback, only: [:create]
+  
+  post '/pages/contacts', to: 'pages#contacts', as: :contacts
 
     # config/routes.rb
     resources :orders do
