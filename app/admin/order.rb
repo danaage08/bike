@@ -1,14 +1,5 @@
 ActiveAdmin.register Order do
   permit_params :start_date, :end_date, :delivery_address, :return_address, :status, :user_id, :admin_status, :total_price
-  
-  validates :delivery_address, presence: true, length: { maximum: 255 }
-  validates :return_address, presence: true, length: { maximum: 255 }
-  validates :start_date, presence: true
-  validates :end_date, presence: true
-  validates :total_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :user_id, presence: true
-  validate :end_date_after_start_date
-  validate :bikes_present
 
   index do
     selectable_column
