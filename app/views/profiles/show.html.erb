@@ -1,3 +1,57 @@
+<style>
+  /* Адаптивные стили для устройств с шириной экрана до 720px */
+@media screen and (max-width: 720px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile__menu {
+    margin-top: 20px;
+  }
+
+  .profile__menu__item {
+    margin-bottom: 10px;
+  }
+
+  .profile-main-order,
+  .profile-main-order-old,
+  .profile-data {
+    margin-top: 20px;
+  }
+
+  .profile-order-list__item {
+    display: none;
+  }
+
+  .order__item-button {
+    width: 100%;
+  }
+
+  .profile-order-list__item.sh {
+    display: block;
+  }
+
+  .info-order {
+    flex-direction: column;
+  }
+
+  .info-order-1,
+  .info-order-2 {
+    width: 100%;
+  }
+
+  .button-box-profile {
+    margin: 10px;
+  }
+
+  .link_edit {
+    margin-bottom: 10px;
+  }
+}
+
+</style>
+
 <% if flash[:notice].present? || flash[:alert].present? %>
     <section class="section section-message">
         <% if flash[:notice].present? %>

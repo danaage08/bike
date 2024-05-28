@@ -45,6 +45,34 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+/* Адаптивные стили для телефонов */
+@media screen and (max-width: 720px) {
+  .field-box {
+    flex-direction: column;
+  }
+
+  .field {
+    flex: 1 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .field-label {
+    margin-bottom: 10px;
+  }
+
+  .field-label label {
+    margin-right: 5px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="submit"] {
+    width: 100%;
+  }
+
+}
 </style>
 <section class="section section-new-order">
 	<h2 class="title section-new-order-title">Заявка на аренду велосипедов</h2>
