@@ -86,7 +86,7 @@
 		</div> -->
 	</div>
 
-	<div class="park-type-bike">
+<div class="park-type-bike">
   <h2 class="park-section__title">Выберите велосипед</h2>
   
   <%= form_with url: root_path, method: :get, local: true do %>
@@ -110,6 +110,16 @@
         <label for="max_price">Цена до:</label>
         <input type="number" name="max_price" id="max_price" value="<%= params[:max_price] %>">
       </div>
+
+      <div class="filter-item">
+        <label for="start_date">Дата начала:</label>
+        <input type="date" name="start_date" id="start_date" value="<%= params[:start_date] %>">
+      </div>
+
+      <div class="filter-item">
+        <label for="end_date">Дата окончания:</label>
+        <input type="date" name="end_date" id="end_date" value="<%= params[:end_date] %>">
+      </div>
       
       <div class="filter-item">
         <button type="submit">Применить фильтры</button>
@@ -119,7 +129,7 @@
   
   <div class="park-section-box">
     <% @bikes.each do |bike| %>
-      <% if bike.free? %> <!-- Проверяем, является ли велосипед свободным -->
+      <% if bike.free? %>
         <div class="park-section__block">
           <div style="margin-top: 50px;" class="park-section__block-img">
             <%= image_tag("bike.png") %>
@@ -140,6 +150,7 @@
     <% end %>
   </div>
 </div>
+
 
 
 

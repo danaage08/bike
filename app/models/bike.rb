@@ -12,11 +12,15 @@ class Bike < ApplicationRecord
   end
 
   enum bike_type: {
-    mountain: "горный",
+    mountain: "Горный",
     urban: "городской",
     urban_economy: "городской эконом",
-    carbon: "карбон"
+    carbon: "Карбон"
   }
+
+  def available?(start_date, end_date)
+    orders.where("admin_status != ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND start_date <= ?))", "completed", start_date, start_date, end_date, end_date, start_date, end_date).empty?
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     super + %w(status)
