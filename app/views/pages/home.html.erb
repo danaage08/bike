@@ -34,15 +34,14 @@
     <%= form_with url: root_path, method: :get, local: true do %>
       <div class="date-selection">
         <label for="start_date">Дата начала:</label>
-        <%= date_field_tag :start_date, params[:start_date], required: true %>
+        <%= date_field_tag :start_date, params[:start_date], required: true, id: "start_date" %>
         <label for="end_date">Дата конца:</label>
-        <%= date_field_tag :end_date, params[:end_date], required: true %>
-        <%= submit_tag 'Показать доступные велосипеды' %>
+        <%= date_field_tag :end_date, params[:end_date], required: true, id: "end_date" %>
       </div>
     <% end %>
   </div>
 
-  <div class="park-section-box">
+  <div class="park-section-box" id="bikes-list">
     <% @bikes.each do |bike| %>
       <div class="park-section__block">
         <div style="margin-top: 50px;" class="park-section__block-img">
@@ -76,6 +75,38 @@
 	<% end %>
 	
 </section>
+
+<script>
+	<script>
+  // Функция для отправки запроса на сервер и обновления списка велосипедов
+  function updateBikesList() {
+    var startDate = $('#start_date').val();
+    var endDate = $('#end_date').val();
+    $.ajax({
+      url: '<%= bikes_path %>',
+      method: 'GET',
+      data: { start_date: startDate, end_date: endDate },
+      dataType: 'html',
+      success: function(response) {
+        $('#bikes-list').html(response);
+      },
+      error: function(xhr, status, error) {
+        console.error('Ошибка при обновлении списка велосипедов:', error);
+      }
+    });
+  }
+
+  // Добавляем обработчики событий изменения значений полей даты
+  $('#start_date, #end_date').on('change', function() {
+    updateBikesList();
+  });
+
+  // Вызываем функцию обновления списка велосипедов при загрузке страницы
+  $(document).ready(function() {
+    updateBikesList();
+  });
+</script>
+</script>
 
 
 <script>
