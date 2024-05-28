@@ -2204,3 +2204,10 @@ media (max-width: 720px) {
     text-align: center;
   }
 }
+
+.no-results {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5em;
+  color: #666;
+}

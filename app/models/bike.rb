@@ -23,7 +23,7 @@ class Bike < ApplicationRecord
       start_date <= :end_date AND end_date >= :start_date
     )", start_date: start_date, end_date: end_date)
 
-    overlapping_orders.none? { |order| order.bike_ids.include?(self.bike_ids.to_s) }
+    overlapping_orders.none? { |order| order.bike_ids.include?(self.id.to_s) }
   end
 
   def self.ransackable_attributes(auth_object = nil)
