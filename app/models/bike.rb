@@ -19,7 +19,7 @@ class Bike < ApplicationRecord
   }
 
   def available?(start_date, end_date)
-      # Находим все заказы, которые имеют незавершенный статус и пересекаются с заданным временным интервалом
+    # Находим все заказы, которые имеют незавершенный статус и пересекаются с заданным временным интервалом
     orders = Order.where("admin_status != 'completed' AND (
       (start_date <= :end_date AND end_date >= :start_date) OR
       (start_date <= :end_date AND end_date >= :start_date) OR
@@ -27,7 +27,7 @@ class Bike < ApplicationRecord
     )", start_date: start_date, end_date: end_date)
 
     # Получаем все идентификаторы велосипедов из найденных заказов
-    booked_bike_ids = orders.map { |order| order.bike_ids.is_a?(Array) ? order.bike_ids : order.bike_ids.split(',') }.flatten.uniq
+    booked_bike_ids = orders.flat_map { |order| order.bike_ids.is_a?(Array) ? order.bike_ids : order.bike_ids.split(',') }.uniq
 
     # Находим все велосипеды, которые не были забронированы в указанный период
     available_bikes = Bike.where.not(id: booked_bike_ids)
