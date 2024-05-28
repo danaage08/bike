@@ -87,45 +87,44 @@
 	</div>
 
 <div class="park-type-bike">
-  <h2 class="park-section__title">Выберите велосипед</h2>
-  
-  <%= form_with url: root_path, method: :get, local: true do %>
-    <div class="filter-box">
-      <div class="filter-item">
-        <label for="bike_type">Тип велосипеда:</label>
-        <select name="bike_type" id="bike_type">
-          <option value="">Все</option>
-          <% @bike_types.each do |type| %>
-            <option value="<%= type %>" <%= 'selected' if params[:bike_type] == type %>><%= type %></option>
-          <% end %>
-        </select>
-      </div>
-      
-      <div class="filter-item">
-        <label for="min_price">Цена от:</label>
-        <input type="number" name="min_price" id="min_price" value="<%= params[:min_price] %>">
-      </div>
-      
-      <div class="filter-item">
-        <label for="max_price">Цена до:</label>
-        <input type="number" name="max_price" id="max_price" value="<%= params[:max_price] %>">
-      </div>
+	<%= form_with url: root_path, method: :get, local: true do %>
+	    <div class="filter-box">
+	      <div class="filter-item">
+	        <label for="bike_type">Тип велосипеда:</label>
+	        <select name="bike_type" id="bike_type">
+	          <option value=""><%= t('bike.bike_types.all', default: 'Все') %></option>
+	          <% Bike.bike_types.each do |key, value| %>
+	            <option value="<%= key %>" <%= 'selected' if params[:bike_type] == key %>><%= t("bike.bike_types.#{key}") %></option>
+	          <% end %>
+	        </select>
+	      </div>
+	      
+	      <div class="filter-item">
+	        <label for="min_price">Цена от:</label>
+	        <input type="number" name="min_price" id="min_price" value="<%= params[:min_price] %>">
+	      </div>
+	      
+	      <div class="filter-item">
+	        <label for="max_price">Цена до:</label>
+	        <input type="number" name="max_price" id="max_price" value="<%= params[:max_price] %>">
+	      </div>
 
-      <div class="filter-item">
-        <label for="start_date">Дата начала:</label>
-        <input type="date" name="start_date" id="start_date" value="<%= params[:start_date] %>">
-      </div>
+	      <div class="filter-item">
+	        <label for="start_date">Дата начала:</label>
+	        <input type="date" name="start_date" id="start_date" value="<%= params[:start_date] %>">
+	      </div>
 
-      <div class="filter-item">
-        <label for="end_date">Дата окончания:</label>
-        <input type="date" name="end_date" id="end_date" value="<%= params[:end_date] %>">
-      </div>
-      
-      <div class="filter-item">
-        <button type="submit">Применить фильтры</button>
-      </div>
-    </div>
+	      <div class="filter-item">
+	        <label for="end_date">Дата окончания:</label>
+	        <input type="date" name="end_date" id="end_date" value="<%= params[:end_date] %>">
+	      </div>
+	      
+	      <div class="filter-item">
+	        <button type="submit">Применить фильтры</button>
+	      </div>
+	    </div>
   <% end %>
+  <h2 class="park-section__title">Выберите велосипед</h2>
   
   <div class="park-section-box">
     <% @bikes.each do |bike| %>
@@ -150,6 +149,8 @@
     <% end %>
   </div>
 </div>
+
+
 
 
 

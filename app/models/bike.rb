@@ -19,7 +19,12 @@ class Bike < ApplicationRecord
   }
 
   def available?(start_date, end_date)
-    orders = Order.where("admin_status != ? AND ((start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?) OR (start_date >= ? AND start_date <= ?))", "completed", start_date, start_date, end_date, end_date, start_date, end_date)
+    orders = Order.where("admin_status != 'completed' AND (
+      (start_date <= :end_date AND end_date >= :start_date) OR
+      (start_date <= :end_date AND end_date >= :start_date) OR
+      (start_date >= :start_date AND start_date <= :end_date)
+    )", start_date: start_date, end_date: end_date)
+
     orders.none? { |order| order.bike_ids.split(',').include?(self.id.to_s) }
   end
 
