@@ -46,11 +46,11 @@ ActiveAdmin.register Order do
       order.bikes.each do |bike|
         if order.in_progress? || order.delivering?
           bike.update(status: :busy)
+        elsif order.completed?
+            order.update(status: :pay)
         else
           bike.update(status: :free)
         end
-
-
       end
     end
 
