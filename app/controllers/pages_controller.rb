@@ -1,7 +1,24 @@
 class PagesController < ApplicationController
   def home
     @page_title = '| Велопрокат'
+
+    @bike_types = Bike.distinct.pluck(:bike_type) # Получаем все уникальные типы велосипедов
+
     @bikes = Bike.all
+
+    # Применяем фильтр по типу велосипеда
+    if params[:bike_type].present?
+      @bikes = @bikes.where(bike_type: params[:bike_type])
+    end
+
+    # Применяем фильтр по цене
+    if params[:min_price].present?
+      @bikes = @bikes.where('price >= ?', params[:min_price])
+    end
+
+    if params[:max_price].present?
+      @bikes = @bikes.where('price <= ?', params[:max_price])
+    end
   end
 
   def delivery
