@@ -1995,3 +1995,212 @@ input.button.contacts-form__button{
     color: #fff;
     font-size: 24px;
   }
+
+  /* Адаптивные стили для мобильных устройств до 720px */
+@media (max-width: 720px) {
+    /* Общие стили */
+    .section {
+        padding: 10px;
+    }
+
+    /* Стили для сообщений */
+    .section-message .message {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .section-message .time-close {
+        font-size: 12px;
+    }
+
+    /* Стили для профиля */
+    .section-profile {
+        padding: 0;
+    }
+
+    .profile-header {
+        text-align: center;
+    }
+
+    .profile__title {
+        font-size: 24px;
+    }
+
+    .profile__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .profile__menu__item {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .profile__menu__item_active {
+        background-color: #f0f0f0;
+    }
+
+    .profile-main-order,
+    .profile-main-order-old,
+    .profile-data {
+        padding: 10px 0;
+    }
+
+    .profile-order-list,
+    .profile-order-list__item {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .profile-order-list__item span {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .orders-box {
+        padding: 0 10px;
+    }
+
+    .order {
+        flex-direction: column;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    .order__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+    }
+
+    .order__span {
+        display: block;
+    }
+
+    .order-info {
+        padding: 10px;
+    }
+
+    .info-order__menu,
+    .order-info-menu {
+        display: block;
+    }
+
+    .order-info__menu__item,
+    .order-info-menu___item {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .profile-data-menu {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .profile-data-menu__item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .button-box-profile {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .button-box-profile .link_edit,
+    .button-box-profile #logout-button {
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* Стили для кнопок заказа */
+    .order__item-button {
+        cursor: pointer;
+    }
+
+    .order-info.active {
+        display: block;
+    }
+
+    .order-info {
+        display: none;
+    }
+}
+
+
+media (max-width: 720px) {
+  .profile__menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile__menu__item {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .profile__menu__item_active {
+    border-bottom: 2px solid #007bff;
+  }
+
+  .profile-main-order ul.profile-order-list, 
+  .profile-main-order-old ul.profile-order-list, 
+  .profile-data ul.profile-data-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .profile-order-list__item, 
+  .profile-data-menu__item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .order__item-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .order__item-button i {
+    margin-left: 10px;
+  }
+
+  .order-info-menu___item {
+    margin-bottom: 10px;
+  }
+
+  .profile-data__span {
+    font-weight: bold;
+  }
+
+  .button-box-profile {
+    margin: 20px 0;
+  }
+
+  .button {
+    width: 90%;
+    text-align: center;
+    margin: 5px auto;
+  }
+
+  .message {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .time-close {
+    font-size: 10px;
+    color: gray;
+    text-align: center;
+  }
+}

@@ -3,14 +3,14 @@ class Order < ApplicationRecord
   belongs_to :user
   has_one :review
 
-  enum admin_status: { in_processing: "В обработке", check: "Выполняется", in_progress: "Забронировано", delivering: "Доставляется", completed: "Завершено", cancel: "Отменено" }
+  enum admin_status: { in_processing: "В обработке", check: "Забронировано", in_progress: "Выполняется", delivering: "Доставляется", completed: "Завершено", cancel: "Отменено" }
   enum status: { pay: "Оплачено", no_pay: "Не оплачено" }
 
   after_create :update_bike_status
 
   def update_bike_status
     self.bikes.each do |bike|
-      if self.completed? || self.in_processing?
+      if self.completed? || self.in_processing? || self.check?
         bike.update(status: :free)
       else
         bike.update(status: :busy)
