@@ -33,7 +33,7 @@ en:
   activerecord:
     attributes:
       bike:
-        types:
+        bike_types:
           mountain: "Горный"
           urban: "Городской"
           urban_economy: "Городской/экономный"
@@ -65,7 +65,7 @@ en:
         admin_status: "Статус администратора"
         status: "Статус"
       bike:
-        types:
+        bike_types:
           mountain: "Горный"
           urban: "Городской"
           urban_economy: "Городской/экономный"
