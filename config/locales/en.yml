@@ -51,3 +51,40 @@ en:
           statuses:
             pay: "Оплачено"
             no_pay: "Не оплачено"
+      models:
+      order: "Заказ"
+    attributes:
+      order:
+        delivery_address: "Адрес доставки"
+        return_address: "Адрес возврата"
+        start_date: "Дата начала аренды"
+        end_date: "Дата конца аренды"
+        total_price: "Общая сумма заказа"
+        user_id: "Пользователь"
+        bikes: "Велосипеды"
+        admin_status: "Статус администратора"
+        status: "Статус"
+      bike:
+        types:
+          mountain: "Горный"
+          urban: "Городской"
+          urban_economy: "Городской/экономный"
+          carbon: "Карбон"
+        statuses:
+          free: "Свободен"
+          busy: "Занят"
+      order:
+        admin_statuses:
+          in_processing: "В обработке"
+          check: "Выполняется"
+          in_progress: "Забронировано"
+          delivering: "Доставляется"
+          completed: "Завершено"
+          cancel: "Отменен"
+        statuses:
+          pay: "Оплачено"
+          no_pay: "Не оплачено"
+  errors:
+    messages:
+      end_date_after_start_date: "должна быть после даты начала"
+      bikes_present: "должны быть указаны"
