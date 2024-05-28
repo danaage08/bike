@@ -31,9 +31,6 @@ class PagesController < ApplicationController
     @helpt = Helpt.new(helpt_params)
     if @helpt.save
       redirect_to root_path, notice: 'Заявка успешно отправлена'
-    else
-      flash.now[:alert] = 'Произошла ошибка при отправке заявки'
-      render :contacts # Или любой другой шаблон, где у вас форма контактов
     end
   end
 
