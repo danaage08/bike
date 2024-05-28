@@ -21,8 +21,6 @@
 		<%= form_with(model: @helpt, method: :post, local: true) do |form| %>
 		  <%= form.text_field :name, class: "contacts-form__input input", placeholder: "Имя*" %>
 		  <%= form.text_field :phone_number, class: "contacts-form__input input", placeholder: "Номер телефона*" %>
-		    <span class="contacts-form__checkbox-text">Согласие на обработку персональных данных</span>
-		  <% end %>
 		  <%= form.submit "Отправить", class: "button contacts-form__button" %>
 		<% end %>
 
